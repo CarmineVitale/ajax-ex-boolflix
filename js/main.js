@@ -32,27 +32,49 @@ function cercaFilm(template) {
                 if(risultati.length > 0) {
                     for (var i = 0; i < risultati.length; i++) {
                         var self = risultati[i];
-                        //gestione stelle voti
-                        var nuovoVoto = Math.ceil((Math.ceil(self.vote_average) / 2));
+                        //gestione voti stelle
+                        var nuovoVoto = Math.ceil(self.vote_average / 2);
+                        
                         var stellaPiena = '<i class="fas fa-star"></i>';
                         var stellaVuota = '<i class="far fa-star"></i>';
                         var ciao = '';
-                        for (var j = 0; j < 5; j++) {
-                            if (nuovoVoto > j) {
-                                ciao += stellaPiena;
-                            } else {
-                                ciao += stellaVuota;
-                            }
+                        
+                        if (nuovoVoto === 1) {
+                            ciao = stellaPiena + stellaVuota + stellaVuota + stellaVuota + stellaVuota;  
+                        } else if (nuovoVoto === 2) {
+                            ciao = stellaPiena + stellaPiena + stellaVuota + stellaVuota + stellaVuota; 
+                        } else if (nuovoVoto === 3) {
+                            ciao = stellaPiena + stellaPiena + stellaPiena + stellaVuota + stellaVuota; 
+                        } else if (nuovoVoto === 4) {
+                            ciao = stellaPiena + stellaPiena + stellaPiena + stellaPiena + stellaVuota; 
+                        } else if (nuovoVoto === 5) {
+                            ciao = stellaPiena + stellaPiena + stellaPiena + stellaPiena + stellaPiena; 
+                        } else if (nuovoVoto === 0) {
+                            ciao = stellaVuota + stellaVuota + stellaVuota + stellaVuota + stellaVuota; 
                         }
+
+                        // gestione lingua
+                        var lingua = self.original_language;
+                        var flag = '';
+                        
+                        if (lingua == 'it') {
+                            flag = '<img class="flag"  src="img/it.svg" alt="bandiera italia">';
+                        } else if (lingua == 'en') {
+                            flag = '<img class="flag"  src="img/en.svg" alt="bandiera england">';
+                        } else {
+                            flag = lingua;
+                        }
+                        
                         
                         
                         var dati = {
                             title: 'Titolo: ' + self.title,
                             original_title: 'Titolo originale: ' + self.original_title,
-                            original_language: 'Lingua: ' + self.original_language,
-                            vote_count: 'Voto medio: ' + nuovoVoto,
-                            icona: 'Voto icona:' + ciao ,
+                            //original_language: 'Lingua: ' + self.original_language,
+                            //vote_count: 'Voto medio: ' + nuovoVoto,
+                            icona: 'Voto medio:' + ciao ,
                             tipo: 'Tipo: Film',
+                            bandiera: 'Lingua:' + flag,
 
                         };
                         var html = template(dati);
@@ -98,24 +120,49 @@ function cercaFilm(template) {
                         var self = risultati[i];
 
                         //gestione voti stelle
-                        var nuovoVoto = Math.ceil((Math.ceil(self.vote_average) / 2));
+                        var nuovoVoto = Math.ceil(self.vote_average / 2);
+                        
                         var stellaPiena = '<i class="fas fa-star"></i>';
                         var stellaVuota = '<i class="far fa-star"></i>';
                         var ciao = '';
-                        for (var j = 0; j < 5; j++) {
-                            if (nuovoVoto > j) {
-                                ciao += stellaPiena;
-                            } else {
-                                ciao += stellaVuota;
-                            }
+                        
+                        if (nuovoVoto === 1) {
+                            ciao = stellaPiena + stellaVuota + stellaVuota + stellaVuota + stellaVuota;  
+                        } else if (nuovoVoto === 2) {
+                            ciao = stellaPiena + stellaPiena + stellaVuota + stellaVuota + stellaVuota; 
+                        } else if (nuovoVoto === 3) {
+                            ciao = stellaPiena + stellaPiena + stellaPiena + stellaVuota + stellaVuota; 
+                        } else if (nuovoVoto === 4) {
+                            ciao = stellaPiena + stellaPiena + stellaPiena + stellaPiena + stellaVuota; 
+                        } else if (nuovoVoto === 5) {
+                            ciao = stellaPiena + stellaPiena + stellaPiena + stellaPiena + stellaPiena; 
+                        } else if (nuovoVoto === 0) {
+                            ciao = stellaVuota + stellaVuota + stellaVuota + stellaVuota + stellaVuota; 
                         }
+                        // gestione lingua
+                        var lingua = self.original_language;
+                        console.log('linguagg',lingua);
+                        var flag = '';
+
+                        if (lingua == 'it') {
+                            flag = '<img class="flag" src="img/it.svg" alt="bandiera italia">';
+                        } else if (lingua == 'en') {
+                            flag = '<img class="flag"  src="img/en.svg" alt="bandiera england">';
+                        } else {
+                            flag = lingua;
+                        }
+                        
+
+                    
+
                         var dati = {
                             title: 'Titolo: ' + self.name,
                             original_title: 'Titolo originale: ' + self.original_name,
-                            original_language: 'Lingua: ' + self.original_language,
-                            vote_count: 'Voto medio: ' + nuovoVoto,
+                            //original_language: 'Lingua: ' + self.original_language,
+                            //vote_count: 'Voto medio: ' + nuovoVoto,
                             tipo: 'Tipo: Serie TV',
-                            icona: 'Voto icona:' + '<i class="far fa-star"></i>',
+                            icona: 'Voto medio: ' + ciao,
+                            bandiera: 'Lingua:' + flag,
                         };
                         
                         var html = template(dati);
@@ -143,8 +190,3 @@ function cercaFilm(template) {
     //Elimino contenuto ricerca precedente
     $('.all-films').html(' ');
  }  //Fine funzione ricerca serie 
-//  function trasformaVoto(s) {
-//     var voto = self.vote_average;
-//     var nuovoVoto = (Math.ceil(self.vote_average) / 2);
-//     return nuovoVoto
-// }
