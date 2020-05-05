@@ -32,13 +32,28 @@ function cercaFilm(template) {
                 if(risultati.length > 0) {
                     for (var i = 0; i < risultati.length; i++) {
                         var self = risultati[i];
+                        //gestione stelle voti
+                        var nuovoVoto = Math.ceil((Math.ceil(self.vote_average) / 2));
+                        var stellaPiena = '<i class="fas fa-star"></i>';
+                        var stellaVuota = '<i class="far fa-star"></i>';
+                        var ciao = '';
+                        for (var j = 0; j < 5; j++) {
+                            if (nuovoVoto > j) {
+                                ciao += stellaPiena;
+                            } else {
+                                ciao += stellaVuota;
+                            }
+                        }
+                        
                         
                         var dati = {
                             title: 'Titolo: ' + self.title,
                             original_title: 'Titolo originale: ' + self.original_title,
                             original_language: 'Lingua: ' + self.original_language,
-                            vote_count: 'Voto medio: ' + self.vote_average,
+                            vote_count: 'Voto medio: ' + nuovoVoto,
+                            icona: 'Voto icona:' + ciao ,
                             tipo: 'Tipo: Film',
+
                         };
                         var html = template(dati);
                         $('.all-films').append(html);
@@ -65,6 +80,7 @@ function cercaFilm(template) {
     //Elimino contenuto ricerca precedente
     $('.all-films').html(' ');
  }  //Fine funzione ricerca film 
+
  function cercaSerie(template) {
     if ($('.input').val() !== '') {
         $.ajax({
@@ -80,14 +96,28 @@ function cercaFilm(template) {
                 if(risultati.length > 0) {
                     for (var i = 0; i < risultati.length; i++) {
                         var self = risultati[i];
-                        
+
+                        //gestione voti stelle
+                        var nuovoVoto = Math.ceil((Math.ceil(self.vote_average) / 2));
+                        var stellaPiena = '<i class="fas fa-star"></i>';
+                        var stellaVuota = '<i class="far fa-star"></i>';
+                        var ciao = '';
+                        for (var j = 0; j < 5; j++) {
+                            if (nuovoVoto > j) {
+                                ciao += stellaPiena;
+                            } else {
+                                ciao += stellaVuota;
+                            }
+                        }
                         var dati = {
                             title: 'Titolo: ' + self.name,
                             original_title: 'Titolo originale: ' + self.original_name,
                             original_language: 'Lingua: ' + self.original_language,
-                            vote_count: 'Voto medio: ' + self.vote_average,
+                            vote_count: 'Voto medio: ' + nuovoVoto,
                             tipo: 'Tipo: Serie TV',
+                            icona: 'Voto icona:' + '<i class="far fa-star"></i>',
                         };
+                        
                         var html = template(dati);
                         $('.all-films').append(html);
                         $('.input').val('');
@@ -112,4 +142,9 @@ function cercaFilm(template) {
 
     //Elimino contenuto ricerca precedente
     $('.all-films').html(' ');
- }  //Fine funzione ricerca film 
+ }  //Fine funzione ricerca serie 
+//  function trasformaVoto(s) {
+//     var voto = self.vote_average;
+//     var nuovoVoto = (Math.ceil(self.vote_average) / 2);
+//     return nuovoVoto
+// }
