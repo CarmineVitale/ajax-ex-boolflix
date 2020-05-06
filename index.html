@@ -8,20 +8,46 @@
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css'/>
 </head>
 <body>
-    <input class="input" type="text">
-    <button id="search">Cerca</button>
+    <header>
+        <h1>Boolflix</h1>
+        <div class="search">
+            <input class="input" type="text">
+            <button id="search">Cerca</button>
+        </div>
+    </header>
+    
 
     <div class="all-films"></div>
     
     <!-- Template Handlebars -->
     <script id="entry-template" type="text/x-handlebars-template">
         <div class="movie">
+            <img src="{{poster}}" alt="">
             <ul class="info-films">
-                <li>{{title}}</li>
-                <li>{{original_title}}</li>
-                <li>{{{bandiera}}}</li>
-                <li>{{{icona}}}</li>
-                <li>{{tipo}}</li>
+                <li>
+                    <span>Titolo:</span>
+                    <span>{{title}}</span>
+                </li>
+                <li>
+                    <span>Titolo originale:</span>
+                    <span>{{original_title}}</span>
+                </li>
+                <li>
+                    <span>Lingua: </span>
+                    <span>{{{bandiera}}}</span>
+                </li>
+                <li>
+                    <span>Voto:</span>
+                    <span>{{{icona}}}</span>
+                </li>
+                <li>
+                    <span>Tipo:</span>
+                    <span>{{tipo}}</span>
+                </li>
+                <li>
+                    <span>Descrizione:</span>
+                    <span>{{descrizione}}</span>
+                </li>
                 
             </ul>
         </div>

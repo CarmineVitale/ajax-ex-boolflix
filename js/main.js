@@ -32,17 +32,15 @@ function cercaFilm(template) {
                 if(risultati.length > 0) {
                     for (var i = 0; i < risultati.length; i++) {
                         var self = risultati[i];
-                        //Richiamo funzione voto stella
-                        var count = getStars(self.vote_average);
-                        //Richoamo funzione per bandiera/lingua
-                        var flag = getLanguage(self.original_language);
 
                         var dati = {
-                            title: 'Titolo: ' + self.title,
-                            original_title: 'Titolo originale: ' + self.original_title,
-                            icona: 'Voto medio:' + count ,
-                            tipo: 'Tipo: Film',
-                            bandiera: 'Lingua:' + flag,
+                            //poster: ,
+                            title: self.title,
+                            original_title: self.original_title,
+                            icona: getStars(self.vote_average) ,
+                            tipo: 'Film',
+                            bandiera: getLanguage(self.original_language),
+                            descrizione: self.overview.substr(0, 30) + '...',
 
                         };
                         var html = template(dati);
@@ -54,8 +52,6 @@ function cercaFilm(template) {
                     alert('Nessun titolo trovato');
                     $('.input').select();
                 }
-                
-                
                 
             }, //fine success
             error: function() {
@@ -86,18 +82,15 @@ function cercaFilm(template) {
                 if(risultati.length > 0) {
                     for (var i = 0; i < risultati.length; i++) {
                         var self = risultati[i];
-                        //Richiamo funzione voto stella
-                        var count = getStars(self.vote_average);
-                        //Richoamo funzione per bandiera/lingua
-                        var flag = getLanguage(self.original_language);
+
                         var dati = {
-                            title: 'Titolo: ' + self.name,
-                            original_title: 'Titolo originale: ' + self.original_name,
-                            //original_language: 'Lingua: ' + self.original_language,
-                            //vote_count: 'Voto medio: ' + nuovoVoto,
-                            tipo: 'Tipo: Serie TV',
-                            icona: 'Voto medio: ' + count,
-                            bandiera: 'Lingua:' + flag,
+                            //poster: ,
+                            title: self.name,
+                            original_title: self.original_name,
+                            tipo: 'Serie TV',
+                            icona: getStars(self.vote_average),
+                            bandiera: getLanguage(self.original_language),
+                            descrizione: self.overview.substr(0, 30) + '...',
                         };
                         
                         var html = template(dati);
@@ -109,9 +102,6 @@ function cercaFilm(template) {
                     alert('Nessun titolo trovato');
                     $('.input').select();
                 }
-                
-                
-                
             }, //fine success
             error: function() {
                 alert('ERROR!')
@@ -158,9 +148,9 @@ function cercaFilm(template) {
      var flag = '';
      
      if (lingua == 'it') {
-         flag = '<img class="flag"  src="img/it.svg" alt="bandiera italia">';
+         flag = '<img class="flag" src="img/it.svg" alt="bandiera italia">';
      } else if (lingua == 'en') {
-         flag = '<img class="flag"  src="img/en.svg" alt="bandiera england">';
+         flag = '<img class="flag" src="img/en.svg" alt="bandiera england">';
      } else {
          flag = lingua;
      }
