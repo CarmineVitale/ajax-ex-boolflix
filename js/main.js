@@ -4,57 +4,23 @@ $(document).ready(function () {
 
     // Ricerca al click del bottone
    $('#search').click(function () {
-       cercaFilm(template);
-       cercaSerie(template)
+       cerca(template, 'https://api.themoviedb.org/3/search/movie', 'FILM' );
+       cerca(template, 'https://api.themoviedb.org/3/search/tv', 'SERIE TV' );
    });
 
    // Ricerca alla pressione del tasto INVIO
    $('.input').keyup(function (e) { 
        if (e.which == 13) {
-        cercaFilm(template);
-        cercaSerie(template);
+        cerca(template, 'https://api.themoviedb.org/3/search/movie', 'FILM');
+        cerca(template, 'https://api.themoviedb.org/3/search/tv', 'SERIE TV');
        }
     });
 }); // end ready
 
-function cercaFilm(template) {
+function cerca(template, url, type) {
     if ($('.input').val() !== '') {
         $.ajax({
-            url: 'https://api.themoviedb.org/3/search/movie',
-            method: 'GET',
-            data: {
-                api_key: 'cd1dad52ddffcbd356f95d30aa3af056',
-                language: 'it-IT',
-                query: $('.input').val(),
-            },
-            success: function(res) {
-                var risultati = res.results;
-                if(risultati.length > 0) {
-                    //invoco funzione print
-                    print(template, risultati, $('.all-films'), 'FILM' )
-                } else {
-                    alert('Nessun titolo trovato');
-                    $('.input').select();
-                }
-                
-            }, //fine success
-            error: function() {
-                alert('ERROR!')
-            }
-        }) //fine chiamata ajax
-    } else {
-        alert('Inserire del testo')
-    }
-
-
-    //Elimino contenuto ricerca precedente
-    $('.all-films').html(' ');
- }  //Fine funzione ricerca film 
-
- function cercaSerie(template) {
-    if ($('.input').val() !== '') {
-        $.ajax({
-            url: 'https://api.themoviedb.org/3/search/tv',
+            url: url,
             method: 'GET',
             data: {
                 api_key: 'cd1dad52ddffcbd356f95d30aa3af056',
@@ -65,7 +31,7 @@ function cercaFilm(template) {
                 var risultati = res.results;
                 if(risultati.length > 0) {
                    //invoco funzione print
-                    print(template, risultati, $('.all-films'), 'SERIE TV' )
+                    print(template, risultati, $('.all-films'), type )
                 } else {
                     alert('Nessun titolo trovato');
                     $('.input').select();
@@ -82,7 +48,7 @@ function cercaFilm(template) {
 
     //Elimino contenuto ricerca precedente
     $('.all-films').html(' ');
- }  //Fine funzione ricerca serie 
+}
 
  // Funzione per stelle/voti
  function getStars(vote_average) {
@@ -143,7 +109,7 @@ function cercaFilm(template) {
         }
 
         var dati = {
-            //poster: ,
+            poster: 'https://image.tmdb.org/t/p/w342' + self.poster_path ,
             title: titolo,
             original_title: titoloOriginale,
             tipo: type,
