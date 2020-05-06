@@ -108,14 +108,27 @@ function cerca(template, url, type) {
             titoloOriginale = self.original_title;
         }
 
+        var immagine;
+        if (self.poster_path) {
+            immagine = 'https://image.tmdb.org/t/p/w342' + self.poster_path;
+        } else  {
+            immagine = "img/no-poster.png";
+        }
+        var descr;
+        if (self.overview) {
+            descr = self.overview.substr(0, 30) + '...';
+        } else {
+            descr = 'NO DESCRIZIONE';
+        }
+    
         var dati = {
-            poster: 'https://image.tmdb.org/t/p/w342' + self.poster_path ,
+            poster: immagine,
             title: titolo,
             original_title: titoloOriginale,
             tipo: type,
             icona: getStars(self.vote_average),
             bandiera: getLanguage(self.original_language),
-            descrizione: self.overview.substr(0, 30) + '...',
+            descrizione: descr,
         };
         
         var html = template(dati);

@@ -13,16 +13,16 @@
         <header>
             <h1>Boolflix</h1>
             <div class="search">
-                <input class="input" type="text">
-                <button id="search">Cerca</button>
+                <input class="input" type="text" placeholder="Cerca titolo">
+                <button id="search">CERCA</button>
             </div>
         </header>
         
     
         <div class="all-films">
             <div class="movie">
-                <!-- <img src="{{poster}}" alt=""> -->
-                <ul class="info-films">
+                <img class="poster" src="img/no-poster.png" alt="">
+                <ul class="info-films active">
                     <li>
                         <span>Titolo:</span>
                         <span>ciao</span>
@@ -50,6 +50,39 @@
                     
                 </ul>
             </div>
+
+            <div class="movie">
+                <img class="poster" src="https://image.tmdb.org/t/p/w342/u1z05trCA7AuSuDhi365grwdos1.jpg" alt="">
+                <ul class="info-films active">
+                    <li>
+                        <span>Titolo:</span>
+                        <span>ciao</span>
+                    </li>
+                    <li>
+                        <span>Titolo originale:</span>
+                        <span>ciao</span>
+                    </li>
+                    <li>
+                        <span>Lingua: </span>
+                        <span>ciao bandiera</span>
+                    </li>
+                    <li>
+                        <span>Voto:</span>
+                        <span>ciao icona</span>
+                    </li>
+                    <li>
+                        <span>Tipo:</span>
+                        <span>ciao tipo</span>
+                    </li>
+                    <li>
+                        <span>Descrizione:</span>
+                        <span>ciao descrizione</span>
+                    </li>
+                    
+                </ul>
+            </div>
+
+
         </div>
     </div>
     
@@ -57,30 +90,30 @@
     <!-- Template Handlebars -->
     <script id="entry-template" type="text/x-handlebars-template">
         <div class="movie">
-            <img src="{{poster}}" alt="">
+            <img class="poster" src="{{poster}}" alt="">
             <ul class="info-films">
                 <li>
-                    <span>Titolo:</span>
+                    <span class="description">Titolo:</span>
                     <span>{{title}}</span>
                 </li>
                 <li>
-                    <span>Titolo originale:</span>
+                    <span class="description">Titolo originale:</span>
                     <span>{{original_title}}</span>
                 </li>
                 <li>
-                    <span>Lingua: </span>
+                    <span class="description">Lingua: </span>
                     <span>{{{bandiera}}}</span>
                 </li>
                 <li>
-                    <span>Voto:</span>
+                    <span class="description">Voto:</span>
                     <span>{{{icona}}}</span>
                 </li>
                 <li>
-                    <span>Tipo:</span>
+                    <span class="description">Tipo:</span>
                     <span>{{tipo}}</span>
                 </li>
                 <li>
-                    <span>Descrizione:</span>
+                    <span class="description">Descrizione:</span>
                     <span>{{descrizione}}</span>
                 </li>
                 
