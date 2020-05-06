@@ -30,24 +30,8 @@ function cercaFilm(template) {
             success: function(res) {
                 var risultati = res.results;
                 if(risultati.length > 0) {
-                    for (var i = 0; i < risultati.length; i++) {
-                        var self = risultati[i];
-
-                        var dati = {
-                            //poster: ,
-                            title: self.title,
-                            original_title: self.original_title,
-                            icona: getStars(self.vote_average) ,
-                            tipo: 'Film',
-                            bandiera: getLanguage(self.original_language),
-                            descrizione: self.overview.substr(0, 30) + '...',
-
-                        };
-                        var html = template(dati);
-                        $('.all-films').append(html);
-                        $('.input').val('');
-                        
-                    } //fine ciclo for
+                    //invoco funzione print
+                    print(template, risultati, $('.all-films'), 'FILM' )
                 } else {
                     alert('Nessun titolo trovato');
                     $('.input').select();
@@ -80,24 +64,8 @@ function cercaFilm(template) {
             success: function(res) {
                 var risultati = res.results;
                 if(risultati.length > 0) {
-                    for (var i = 0; i < risultati.length; i++) {
-                        var self = risultati[i];
-
-                        var dati = {
-                            //poster: ,
-                            title: self.name,
-                            original_title: self.original_name,
-                            tipo: 'Serie TV',
-                            icona: getStars(self.vote_average),
-                            bandiera: getLanguage(self.original_language),
-                            descrizione: self.overview.substr(0, 30) + '...',
-                        };
-                        
-                        var html = template(dati);
-                        $('.all-films').append(html);
-                        $('.input').val('');
-                        
-                    } //fine ciclo for
+                   //invoco funzione print
+                    print(template, risultati, $('.all-films'), 'SERIE TV' )
                 } else {
                     alert('Nessun titolo trovato');
                     $('.input').select();
@@ -156,3 +124,38 @@ function cercaFilm(template) {
      }
      return flag;
  }
+
+ //finzione per stampare in html
+ function print(template, risultati, container, type ) {
+
+    for (var i = 0; i < risultati.length; i++) {
+        var self = risultati[i];
+
+        var titolo;
+        var titoloOriginale;
+        if (type == 'SERIE TV') {
+            titolo = self.name;
+            titoloOriginale = self.original_name;
+       
+        } else if (type == 'FILM') {
+            titolo = self.title;
+            titoloOriginale = self.original_title;
+        }
+
+        var dati = {
+            //poster: ,
+            title: titolo,
+            original_title: titoloOriginale,
+            tipo: type,
+            icona: getStars(self.vote_average),
+            bandiera: getLanguage(self.original_language),
+            descrizione: self.overview.substr(0, 30) + '...',
+        };
+        
+        var html = template(dati);
+        container.append(html);
+        $('.input').val('');
+        
+    } //fine ciclo for
+
+ } // fine funzione print

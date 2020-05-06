@@ -4,20 +4,55 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BOOLFLIX</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css'/>
 </head>
 <body>
-    <header>
-        <h1>Boolflix</h1>
-        <div class="search">
-            <input class="input" type="text">
-            <button id="search">Cerca</button>
-        </div>
-    </header>
+    <div class="app">
+        <header>
+            <h1>Boolflix</h1>
+            <div class="search">
+                <input class="input" type="text">
+                <button id="search">Cerca</button>
+            </div>
+        </header>
+        
     
-
-    <div class="all-films"></div>
+        <div class="all-films">
+            <div class="movie">
+                <img src="{{poster}}" alt="">
+                <ul class="info-films">
+                    <li>
+                        <span>Titolo:</span>
+                        <span>ciao</span>
+                    </li>
+                    <li>
+                        <span>Titolo originale:</span>
+                        <span>ciao</span>
+                    </li>
+                    <li>
+                        <span>Lingua: </span>
+                        <span>ciao bandiera</span>
+                    </li>
+                    <li>
+                        <span>Voto:</span>
+                        <span>ciao icona</span>
+                    </li>
+                    <li>
+                        <span>Tipo:</span>
+                        <span>ciao tipo</span>
+                    </li>
+                    <li>
+                        <span>Descrizione:</span>
+                        <span>ciao descrizione</span>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+    
     
     <!-- Template Handlebars -->
     <script id="entry-template" type="text/x-handlebars-template">

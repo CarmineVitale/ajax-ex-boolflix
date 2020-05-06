@@ -1,8 +1,37 @@
-/* * {
+* {
     box-sizing: border-box;
     padding: 0;
     margin: 0;
-} */
+}
+body {
+    font-family: 'Roboto', sans-serif;
+}
+.app {
+    width: 1200px;
+}
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: purple;
+    padding: 10px;
+}
+.all-films {
+    background: red;
+    padding: 0 20px;
+    display: flex;
+    flex-wrap: wrap;
+}
+.all-films .info-films li {
+    list-style: none;
+}
+.movie {
+    flex-basis: 350px;
+}
+
+
+
+
 img.flag {
     width: 16px;
 }
