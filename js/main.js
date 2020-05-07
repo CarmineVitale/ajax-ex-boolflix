@@ -55,8 +55,8 @@ function cerca(template, url, type) {
      //gestione voti stelle
      var nuovoVoto = Math.ceil(vote_average / 2);
                         
-     var stellaPiena = '<i class="fas fa-star"></i>';
-     var stellaVuota = '<i class="far fa-star"></i>';
+     var stellaPiena = '<i class="fullStar fas fa-star"></i>';
+     var stellaVuota = '<i class="emptyStar far fa-star"></i>';
      var count = '';
      
      if (nuovoVoto === 1) {
@@ -116,7 +116,7 @@ function cerca(template, url, type) {
         }
         var descr;
         if (self.overview) {
-            descr = self.overview.substr(0, 30) + '...';
+            descr = self.overview.substr(0, 60) + '...';
         } else {
             descr = 'NO DESCRIZIONE';
         }

@@ -14,7 +14,8 @@
             <h1>Boolflix</h1>
             <div class="search">
                 <input class="input" type="text" placeholder="Cerca titolo">
-                <button id="search">CERCA</button>
+                <button id="search"><i class="fas fa-search"></i></button>
+                
             </div>
         </header>
         
@@ -27,11 +28,8 @@
     <script id="entry-template" type="text/x-handlebars-template">
         <div class="movie">
             <img class="poster" src="{{poster}}" alt="">
+            <h2>- {{title}} -</h2>
             <ul class="info-films">
-                <li>
-                    <span class="description">Titolo:</span>
-                    <span>{{title}}</span>
-                </li>
                 <li>
                     <span class="description">Titolo originale:</span>
                     <span>{{original_title}}</span>
